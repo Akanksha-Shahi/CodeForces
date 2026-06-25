@@ -1,0 +1,10 @@
+// Given two numbers N and M. Print the summation of their last digits.
+#include<iostream>
+using namespace std;
+int main(){
+    long long N;
+    long long M;
+    cin>>N;
+    cin>>M;
+    cout<< ((N % 10)+ (M % 10))<<endl;
+}
