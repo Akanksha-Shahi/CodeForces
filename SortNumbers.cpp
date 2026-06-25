@@ -7,7 +7,7 @@ int main(){
     int x=a, y=b, z=c;
     if( a>b) swap(a,b);
     if(b>c) {
-        swap(b,c);
+        swap(c,b);
         if(a>b) swap(a,b);
     }
     cout<<a<<endl;
