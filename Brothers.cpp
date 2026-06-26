@@ -9,5 +9,4 @@ int main(){
     cin>> F2 >> S2;
     if ( S1 == S2) cout<<"ARE Brothers";
     else cout<<"NOT";
-    return 0;
 }
