@@ -7,5 +7,4 @@ int main(){
     cout<<X<<" + "<<Y<<" = "<<X+Y<<endl;
     cout<<X<<" * "<<Y<<" = "<<X*Y<<endl;
     cout<<X<<" - "<<Y<<" = "<<X-Y<<endl;
-    return 0;
 }    
