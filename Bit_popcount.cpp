@@ -1,10 +1,11 @@
+// 2240A
 #include<iostream>
 using namespace std;
 void solve(){
     long long n, k;
     cin>> n >>k;
     long long total_popcount =0;
-    long long curr_bit =0;
+    long long curr_bit =1;
     while(n>0){
         long long full_row_cost = k*curr_bit;
         if(n>=full_row_cost){
@@ -18,4 +19,14 @@ void solve(){
         curr_bit *= 2;
     }
     cout<<total_popcount<<"\n";
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t ;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
 }
