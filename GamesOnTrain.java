@@ -1,3 +1,4 @@
+// 2236A
 import java.util.Scanner;
 import java.util.Arrays;
 public class Main{
@@ -11,7 +12,7 @@ public class Main{
             int maxH=0;
             for( int i =0; i<n; i++){
                 h[i]= sc.nextInt();
-                if(h[i)>maxH) maxH = h[i];
+                if(h[i]>maxH) maxH = h[i];
             }
             int minK = Integer.MAX_VALUE;
             for( int targetH = maxH+1; targetH<=maxH+6; targetH++){
@@ -23,7 +24,7 @@ public class Main{
                         possible = false;
                         break;
                     }
-                    currK = Math.max(currk, x);
+                    currK = Math.max(currK, x);
                 }
                 if(possible){
                     minK = Math.min(minK, currK);
