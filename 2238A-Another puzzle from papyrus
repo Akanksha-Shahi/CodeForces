@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){
+    int n;
+    long long c;
+    cin>>n>>c;
+    vector<long long> a(n), b(n);
+    for( int i =0; i<n; i++) cin>>a[i];
+    for( int i =0; i<n; i++) cin>>b[i];
+    long long ans =-1;
+    bool possible_no_reorder = true;
+    long long cost_no_reorder =0;
+    for(int i =0; i<n; i++){
+        if(a[i] < b[i]){
+            possible_no_reorder = false;
+            break;
+        }
+        cost_no_reorder+=(a[i] -b[i]);
+    }
+    if(possible_no_reorder) ans = cost_no_reorder;
+    vector<long long> sorted_a = a;
+    vector<long long> sorted_b =b;
+    sort(sorted_a.begin(), sorted_a.end());
+    sort(sorted_b.begin(), sorted_b.end());
+    bool possible_reorder = true;
+    long long cost_reorder = c;
+    for( int i=0; i<n; i++){
+        if(sorted_a[i] < sorted_b[i]){
+            possible_reorder = false;
+            break;
+        }
+        cost_reorder += (sorted_a[i] - sorted_b[i]);
+    }
+    if(possible_reorder){
+        if(ans ==-1 || cost_reorder<ans) ans = cost_reorder;
+    }
+    cout<<ans<<"\n";
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
