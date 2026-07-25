@@ -1,0 +1,38 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer tokenizer = null;
+        String line = reader.readLine();
+        if(line==null || line.trim().isEmpty())return;
+        int t = Integer.parseInt(line.trim());
+        StringBuilder output = new StringBuilder();
+        for(int i =0; i<t; i++){
+            while(tokenizer==null || !tokenizer.hasMoreTokens()){
+                String nextLine = reader.readLine();
+                if(nextLine == null) break;
+                tokenizer = new StringTokenizer(nextLine);
+            }
+            long n = Long.parseLong(tokenizer.nextToken());
+            long a = Long.parseLong(tokenizer.nextToken());
+            long b = Long.parseLong(tokenizer.nextToken());
+            long minCost = n*a;
+            long groups = n/3;
+            long remainder = n%3;
+            long cost1= groups*b+remainder*a;
+            minCost = Math.min(minCost, cost1);
+            if(remainder>0){
+                long cost2 = (groups+1)*b;
+                minCost = Math.min(minCost, cost2);
+            }
+            long totalGroups =(n+2)/3;
+            long cost3 = totalGroups*b;
+            minCost = Math.min(minCost, cost3);
+            output.append(minCost).append("\n");
+        }
+        System.out.print(output);
+    }    
+}
