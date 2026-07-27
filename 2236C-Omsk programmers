@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+using int64 = long long;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int T;
+    cin >> T;
+    while (T--) {
+        int64 a, b, x;
+        cin >> a >> b >> x;
+        const int64 INF = (1LL << 60);
+        int64 ans = INF;
+        int64 divs = 0;
+        while (a != b) {
+            if (a < b)
+                swap(a, b);
+            ans = min(ans, divs + (a - b));
+            a /= x;
+            divs++;
+        }
+        ans = min(ans, divs);
+        cout << ans << '\n';
+    }
+    return 0;
+}
