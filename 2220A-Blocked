@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){
+    int n ;
+    cin>>n;
+    vector<int> a(n);
+    for( int i =0; i<n; ++i) cin>>a[i];
+    sort(a.rbegin(), a.rend());
+    auto check=[&](const vector<int>& p){
+        bitset<20005> bs;
+        bs[0]=1;
+        for(int x:p){
+            if(bs[x]) return false;
+            bs|=(bs<<x);
+        } 
+        return true;
+    };
+    if(check(a)){
+        for( int i =0; i<n; ++i){
+            cout<<a[i]<<(i==n-1 ? "":" ");
+        }
+        cout<<"\n";
+        return;
+    }
+    reverse(a.begin(), a.end());
+    if(check(a)){
+        for(int i =0; i<n; ++i){
+            cout<<a[i]<<(i==n-1 ? "":" ");
+        }
+        cout<<"\n";
+        return;
+    }
+    mt19937 rng(1337);
+    for(int iter =0; iter<200; ++iter){
+        shuffle(a.begin(), a.end(), rng);
+        if(check(a)){
+            for(int i =0; i<n; ++i){
+                cout<<a[i]<<(i==n-1 ? "":" ");
+            }
+            cout<<"\n";
+            return;
+        }
+    }
+    cout<<-1<<"\n";
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
