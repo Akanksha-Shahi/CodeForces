@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int T;
+    cin>>T;
+    while(T--){
+        vector<long long> a(7);
+        long long sum =0;
+        for(int i =0; i<7; i++){
+            cin>>a[i];
+            sum+=a[i];
+        }
+        long long ans = LLONG_MIN;
+        for(int i =0; i<7; i++){
+            ans = max(ans, 2LL*a[i]-sum);
+        }
+        cout<<ans<<'\n';
+    }
+    return 0;
+}
