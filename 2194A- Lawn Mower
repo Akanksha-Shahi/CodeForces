@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+using int64 = long long;
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int T;
+    cin>>T;
+    while(T--){
+        int64 n,w;
+        cin>>n>>w;
+        cout<<n-(n/w)<<'\n';
+    }
+    return 0;
+}
