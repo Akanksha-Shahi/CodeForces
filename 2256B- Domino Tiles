@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+const long long MOD = 998244353;
+void solve(){
+    int n ;
+    string s;
+    cin>>n>>s;
+    long long dp[2][2]={};
+    if(n==1){
+        if(s[0]=='?'|| s[0]=='0' ||s[0]=='1') cout<<1<<'\n';
+        else cout<<0<<'\n';
+        return;
+    }
+    for(int x =0; x<=1; ++x){
+        if(s[0]=='?'||s[0]-'0'==x){
+            for(int y =0; y<=1; ++y){
+                if(s[1]=='?'||s[1]-'0'==y)dp[x][y]=1;
+            }
+        }
+    }
+    for(int i =2; i<n; ++i){
+        long long ndp[2][2]={};
+        for(int prev2 =0; prev2<=1; ++prev2){
+            for(int prev =0; prev<=1; ++prev){
+                if(dp[prev2][prev]==0)continue;
+                for(int cur=0; cur<=1; ++cur){
+                    if(s[i]!='?' && s[i]-'0'!=cur) continue;
+                    if(cur == prev2) continue;
+                    ndp[prev][cur]+=dp[prev2][prev];
+                    ndp[prev][cur]%=MOD;
+                }
+            }
+        }
+        memcpy(dp,ndp,sizeof(dp));
+    }
+    long long ans =0;
+    for(int x=0; x<=1; ++x){
+        for(int y =0; y<=1; ++y) ans = (ans+dp[x][y])%MOD;
+    }
+    cout<<ans<<'\n';
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
