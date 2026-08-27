@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){
+    int n, m;
+    cin>>n>>m;
+    vector<string> words(n), abbr(m);
+    bool available[26]={};
+    for(auto &s:words){
+        cin>>s;
+        available[s[0]-'a']= true;
+    }
+    for(auto &s:abbr) cin>>s;
+    vector<bool> done(m, false);
+    int completed =0;
+    while(true){
+        bool changed = false;
+        for(int i =0; i<m; ++i){
+            if(done[i]) continue;
+            bool possible = true;
+            for(char c:abbr[i]){
+                if(!available[c-'A']){
+                    possible = false;
+                    break;
+                }
+            }
+            if(possible){
+                done[i]= true;
+                completed++;
+                available[abbr[i][0]-'A']= true;
+                changed = true;
+            }
+        }
+        if(!changed) break;
+    }
+    cout<<(completed==m?"YES\n":"NO\n");
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int TestsNumT;
+    cin>>TestsNumT;
+    while(TestsNumT--){
+        solve();
+    }
+    return 0;
+}
