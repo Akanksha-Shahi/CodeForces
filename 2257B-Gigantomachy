@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){
+    int n, m;
+    cin>>n>>m;
+    long long a,b;
+    cin>>a;
+    for(int i =1; i<n; ++i){
+        long long x;
+        cin>>x;
+    }
+    cin>>b;
+    for(int i =1; i<m; ++i){
+        long long x;
+        cin>>x;
+    }
+    long long bea = a+n-1;
+    long long ver = b+m-1;
+    cout<<(bea>=ver?1:2)<<'\n';
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int TestsNum;
+    cin>>TestsNum;
+    while(TestsNum--){
+        solve();
+    }
+    return 0;
+}
