@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){
+    int n ;
+    cin>>n;
+    vector<long long>b(n);
+    for(auto &x:b) cin>>x;
+    map<long long, vector<int>> groups;
+    for(int i =0; i<n; ++i)groups[b[i]].push_back(i);
+    vector<pair<long long, vector<int>>> g;
+    for(auto &p:groups) g.push_back(p);
+    if(g[0].first!=0){
+        cout<<-1<<'\n';
+        return;
+    }
+    vector<long long> ans(n);
+    long long prev =0;
+    for(int i =0; i+1<(int)g.size(); ++i){
+        long long diff =g[i+1].first-g[i].first;
+        long long cnt = g[i].second.size();
+        if(diff<=0|| diff%cnt!=0){
+            cout<<-1<<'\n';
+            return;
+        }
+        long long x=diff/cnt;
+        if(x<=prev){
+            cout<<-1<<'\n';
+            return;
+        }
+        for(int idx: g[i].second){
+            ans[idx]= x;
+        } 
+        prev =x;
+    }
+    long long lastValue = prev+1;
+    for(int idx :g.back().second) ans[idx]= lastValue;
+    for(long long x:ans) cout<<x<<' ';
+    cout<<'\n';
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int TestsNum;
+    cin>>TestsNum;
+    while(TestsNum--) solve();
+    return 0;
+}
