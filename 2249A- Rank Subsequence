@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct Node{
+    int l, r, u, v;
+};
+bool check(int m, const vector<Node>&a){
+    int pos =1;
+    for(const auto& x:a){
+        if(pos>m) break;
+        bool leftOk = !(x.l<=pos&&pos<=x.r);
+        int rightRank =m-pos+1;
+        bool rightOk = !(x.u<=rightRank && rightRank<=x.v);
+        if(leftOk && rightOk) ++pos;
+    }
+    return pos==m+1;
+}
+void solve(){
+    int n ;
+    cin>>n;
+    vector<Node>a(n);
+    for(auto &x:a) cin>>x.l>>x.r>>x.u>>x.v;
+    for(int m =n; m>=1; --m){
+        if(check(m,a)){
+            cout<<m<<'\n';
+            return;
+        }
+    }
+    cout<<0<<'\n';
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int TestsNum;
+    cin>>TestsNum;
+    while(TestsNum--) 
+        solve();
+    return 0;
+}
