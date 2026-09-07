@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){
+    int n;
+    string s;
+    cin>>n>>s;
+    int runs =1;
+    for(int i =1; i<n; i++){
+        if(s[i]!=s[i-1]) runs++;
+    }
+    bool reduce2 = false;
+    bool reduce1 = false;
+    for(int i =1; i<n-1; i++){
+        if(s[i]!=s[i-1] && s[i]!=s[i+1]){
+            reduce1 = true;
+            if(s[i-1]==s[i+1]) reduce2 = true;
+        }
+    }
+    if(reduce2) cout<<runs-2<<'\n';
+    else if(reduce1) cout<<runs-1<<'\n';
+    else cout<<runs<<'\n';
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin>>t;
+    while(t--)
+        solve();
+    return 0;    
+}
