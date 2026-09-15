@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin>>t;
+    while(t--){
+        int n, m;
+        cin>>n>>m;
+        vector<int> freq(m+1);
+        ll total =0;
+        for(int i =0; i<n; i++){
+            int x;
+            cin>>x;
+            freq[x]++;
+            total+=x;
+        }
+        vector<int> suf(m+2, 0);
+        for(int i =m; i>=1; i--) suf[i]= suf[i+1] +freq[i];
+        vector<ll> ans(m+1);
+        ll p =2;
+        for(int k =1; k<=m; k++){
+            if(p>m){
+                for(int j = k; j<=m; j++) ans[j]= total;
+                break;
+            }
+            ll best =0;
+            int maxX = m/p;
+            for(int x = 1; x<=maxX; x++){
+                ll cur = freq[p*x];
+                for(ll j =1; j<p; j++) cur+=suf[j*x];
+                best = max(best, cur);
+            }
+            ans[k]= best;
+            p*=2;
+        }
+        for(int k =1; k<=m; k++){
+            cout<< ans[k]<<(k==m ? '\n':' ');
+        }
+    }
+    return 0;
+}
