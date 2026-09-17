@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin>>t;
+    while(t--){
+        int n ;
+        cin>>n;
+        long long mxEven =0;
+        long long mnOdd = 1e18;
+        for(int i =1; i<=n; i++){
+            long long w;
+            cin>>w;
+            if(i%2==0) mxEven = max(mxEven, w);
+            else mnOdd = min(mnOdd, w);
+        }
+        if(n %2 ==0 && mxEven +2 <= mnOdd) cout<<"YES\n";
+        else cout<<"NO\n";
+    }
+    return 0;
+}
