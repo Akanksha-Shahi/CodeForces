@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin>>t;
+    while(t--){
+        int n,k;
+        cin>>n>>k;
+        if(k==n-1){
+            cout<<-1<<'\n';
+            continue;
+        }
+        int r=n-k;
+        int zeros = n/2;
+        int ones= n-zeros;
+        int zeroBlocks, oneBlocks;
+        char start;
+        if( n%2==1 && r%2==1){
+            start = '1';
+            oneBlocks =(r+1)/2;
+            zeroBlocks =r/2;
+        }
+        else{
+            start ='0';
+            zeroBlocks =(r+1)/2;
+            oneBlocks = r/2;
+        }
+        vector<int> len0(zeroBlocks, 1);
+        vector<int> len1(oneBlocks, 1);
+        int extra0= zeros - zeroBlocks;
+        int extra1= ones - oneBlocks;
+        if(zeroBlocks >0) len0[0]+=extra0;
+        if(oneBlocks >0) len1[0]+=extra1;
+        string ans;
+        int p0=0, p1=0;
+        for(int i =0; i<r; i++){
+            if((start =='0' && i%2==0) || (start=='1' && i%2==1)){
+                ans+= string(len0[p0++], '0');
+            }
+            else ans+= string(len1[p1++], '1');
+        }
+        cout<<ans<<'\n';
+    }
+    return 0;
+}
